@@ -16,9 +16,12 @@ Empaquetara tanto los archivos html, js, y java como resultado de angular en el 
 java -jar target/*.jar
 ```
 
+Si usará la base de datos por defecto, puede usar el archivo postgresql.yml con Docker.
+
 Entonces navega a [http://localhost:8080](http://localhost:8080) en su navegador.
 
 ## Otros
+
 ### Docker Compose support
 
 Hay una serie de archivos .yml en [src/main/docker/](src/main/docker/) donde tambien hay herramientas extras para desarrollo como Sonar;
