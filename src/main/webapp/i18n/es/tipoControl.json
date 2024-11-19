@@ -1,0 +1,10 @@
+{
+  "proyectoArquitecturaApp": {
+    "TipoControl": {
+      "null": "",
+      "PREVENTIVE": "Preventivo",
+      "DETECTIVE": "Detectivo",
+      "CORRECTIVE": "Correctivo"
+    }
+  }
+}

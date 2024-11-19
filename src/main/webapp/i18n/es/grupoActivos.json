@@ -1,0 +1,30 @@
+{
+  "proyectoArquitecturaApp": {
+    "grupoActivos": {
+      "home": {
+        "title": "Grupos de Activos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Grupo de Activos",
+        "createOrEditLabel": "Crear o editar Grupo de Activos",
+        "notFound": "Ningún Grupo de Activos encontrado"
+      },
+      "created": "Un nuevo Grupo de Activos ha sido creado con el identificador {{ param }}",
+      "updated": "Un Grupo de Activos ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Grupo de Activos ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar el Grupo de Activos {{ id }}?"
+      },
+      "detail": {
+        "title": "Grupo Activos"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "disponibilidad": "Disponibilidad",
+      "integridad": "Integridad",
+      "confidencialidad": "Confidencialidad",
+      "criticidad": "Criticidad",
+      "activos": "Activos",
+      "riesgos": "Riesgos"
+    }
+  }
+}

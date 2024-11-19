@@ -1,0 +1,25 @@
+{
+  "proyectoArquitecturaApp": {
+    "amenazas": {
+      "home": {
+        "title": "Amenazas",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Amenaza",
+        "createOrEditLabel": "Crear o editar Amenaza",
+        "notFound": "Ninguna Amenaza encontrado"
+      },
+      "created": "Una nuevo Amenaza ha sido creado con el identificador {{ param }}",
+      "updated": "Una Amenaza ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Amenaza ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quieres eliminar la amenaza {{ id }}?"
+      },
+      "detail": {
+        "title": "Amenazas"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "riesgo": "Riesgo"
+    }
+  }
+}

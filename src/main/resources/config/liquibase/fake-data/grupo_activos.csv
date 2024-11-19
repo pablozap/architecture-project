@@ -1,0 +1,11 @@
+id;nombre;disponibilidad;integridad;confidencialidad;criticidad
+1;Bases de datos;MEDIUM;HIGH;LOW;MEDIUM
+2;Estaciones;LOW;LOW;MEDIUM;MEDIUM
+3;Hardware;LOW;MEDIUM;HIGH;LOW
+4;Servidores;LOW;LOW;HIGH;LOW
+5;Sistemas de informacion;HIGH;HIGH;LOW;LOW
+6;Apliance;LOW;LOW;MEDIUM;HIGH
+7;Software;HIGH;MEDIUM;LOW;LOW
+8;Telecomunicaciones;MEDIUM;HIGH;MEDIUM;LOW
+9;overcook;MEDIUM;MEDIUM;HIGH;MEDIUM
+10;hmph misappropriate;LOW;HIGH;LOW;MEDIUM

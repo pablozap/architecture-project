@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-3">
+    <span class="hipster img-fluid rounded"></span>
+  </div>
+
+  <div class="col-md-9">
+    <h1 class="display-4"><span jhiTranslate="home.title">¡Bienvenido!</span> (Proyecto Arquitectura)</h1>
+
+    <div>
+      @if (account() !== null) {
+        <div class="alert alert-success">
+          @if (account(); as accountRef) {
+            <span id="home-logged-message" jhiTranslate="home.logged.message" [translateValues]="{ username: accountRef.login }"
+              >Está conectado como &quot;{{ accountRef.login }}&quot;.</span
+            >
+          }
+        </div>
+      }
+    </div>
+  </div>
+</div>

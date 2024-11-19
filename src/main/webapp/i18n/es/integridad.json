@@ -1,0 +1,10 @@
+{
+  "proyectoArquitecturaApp": {
+    "Integridad": {
+      "null": "",
+      "HIGH": "Alta",
+      "MEDIUM": "Moderada",
+      "LOW": "Baja"
+    }
+  }
+}

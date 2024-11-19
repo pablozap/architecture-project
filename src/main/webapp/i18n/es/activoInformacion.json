@@ -1,0 +1,40 @@
+{
+  "proyectoArquitecturaApp": {
+    "activoInformacion": {
+      "home": {
+        "title": "Activos de Informacion",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Activo de Informacion",
+        "createOrEditLabel": "Crear o editar Activo de Informacion",
+        "notFound": "Ningún Activo de Informacion fue encontrado"
+      },
+      "created": "Un nuevo Activo ha sido creado con el identificador {{ param }}",
+      "updated": "Un Activo ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Activo ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar el Activo {{ nombre }}?"
+      },
+      "detail": {
+        "title": "Activo Informacion"
+      },
+      "id": "ID",
+      "proceso": "Proceso",
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "tipoActivo": "Tipo Activo",
+      "ley1581": "Ley 1581",
+      "clasificacionInformacion1712": "Clasificacion Informacion 1712",
+      "ley1266": "Ley 1266",
+      "formato": "Formato",
+      "propietario": "Propietario",
+      "usuario": "Usuario",
+      "custodio": "Custodio",
+      "usuarioFinal": "Usuario Final",
+      "fecha": "Fecha",
+      "estadoActivo": "Estado Activo",
+      "fechaIngreso": "Fecha Ingreso",
+      "fechaRetiro": "Fecha Retiro",
+      "grupoActivo": "Grupo Activo"
+    }
+  }
+}

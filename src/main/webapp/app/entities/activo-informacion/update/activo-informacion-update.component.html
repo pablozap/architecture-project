@@ -1,0 +1,304 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-activo-informacion-heading"
+        data-cy="ActivoInformacionCreateUpdateHeading"
+        jhiTranslate="proyectoArquitecturaApp.activoInformacion.home.createOrEditLabel"
+      >
+        Crear o editar Activo Informacion
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="proyectoArquitecturaApp.activoInformacion.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        <div class="mb-3">
+          <label class="form-label" for="field_proceso" jhiTranslate="proyectoArquitecturaApp.activoInformacion.proceso">Proceso</label>
+          <select class="form-control" name="proceso" formControlName="proceso" id="field_proceso" data-cy="proceso">
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.Proceso.null' | translate }}</option>
+            @for (proceso of procesoValues; track $index) {
+              <option [value]="proceso">{{ 'proyectoArquitecturaApp.Proceso.' + proceso | translate }}</option>
+            }
+          </select>
+        </div>
+
+        @let nombreRef = editForm.get('nombre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nombre" jhiTranslate="proyectoArquitecturaApp.activoInformacion.nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let descripcionRef = editForm.get('descripcion')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_descripcion" jhiTranslate="proyectoArquitecturaApp.activoInformacion.descripcion"
+            >Descripcion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="descripcion"
+            id="field_descripcion"
+            data-cy="descripcion"
+            formControlName="descripcion"
+          />
+          @if (descripcionRef.invalid && (descripcionRef.dirty || descripcionRef.touched)) {
+            <div>
+              @if (editForm.get('descripcion')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let tipoActivoRef = editForm.get('tipoActivo')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_tipoActivo" jhiTranslate="proyectoArquitecturaApp.activoInformacion.tipoActivo"
+            >Tipo Activo</label
+          >
+          <select class="form-control" name="tipoActivo" formControlName="tipoActivo" id="field_tipoActivo" data-cy="tipoActivo">
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.TipoActivo.null' | translate }}</option>
+            @for (tipoActivo of tipoActivoValues; track $index) {
+              <option [value]="tipoActivo">{{ 'proyectoArquitecturaApp.TipoActivo.' + tipoActivo | translate }}</option>
+            }
+          </select>
+          @if (tipoActivoRef.invalid && (tipoActivoRef.dirty || tipoActivoRef.touched)) {
+            <div>
+              @if (editForm.get('tipoActivo')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let ley1581Ref = editForm.get('ley1581')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_ley1581" jhiTranslate="proyectoArquitecturaApp.activoInformacion.ley1581">Ley 1581</label>
+          <input type="checkbox" class="form-check" name="ley1581" id="field_ley1581" data-cy="ley1581" formControlName="ley1581" />
+          @if (ley1581Ref.invalid && (ley1581Ref.dirty || ley1581Ref.touched)) {
+            <div>
+              @if (editForm.get('ley1581')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let clasificacionInformacion1712Ref = editForm.get('clasificacionInformacion1712')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_clasificacionInformacion1712"
+            jhiTranslate="proyectoArquitecturaApp.activoInformacion.clasificacionInformacion1712"
+            >Clasificacion Informacion 1712</label
+          >
+          <select
+            class="form-control"
+            name="clasificacionInformacion1712"
+            formControlName="clasificacionInformacion1712"
+            id="field_clasificacionInformacion1712"
+            data-cy="clasificacionInformacion1712"
+          >
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.ClasificacionInformacion1712.null' | translate }}</option>
+            @for (clasificacionInformacion1712 of clasificacionInformacion1712Values; track $index) {
+              <option [value]="clasificacionInformacion1712">
+                {{ 'proyectoArquitecturaApp.ClasificacionInformacion1712.' + clasificacionInformacion1712 | translate }}
+              </option>
+            }
+          </select>
+          @if (
+            clasificacionInformacion1712Ref.invalid && (clasificacionInformacion1712Ref.dirty || clasificacionInformacion1712Ref.touched)
+          ) {
+            <div>
+              @if (editForm.get('clasificacionInformacion1712')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let ley1266Ref = editForm.get('ley1266')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_ley1266" jhiTranslate="proyectoArquitecturaApp.activoInformacion.ley1266">Ley 1266</label>
+          <input type="checkbox" class="form-check" name="ley1266" id="field_ley1266" data-cy="ley1266" formControlName="ley1266" />
+          @if (ley1266Ref.invalid && (ley1266Ref.dirty || ley1266Ref.touched)) {
+            <div>
+              @if (editForm.get('ley1266')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_formato" jhiTranslate="proyectoArquitecturaApp.activoInformacion.formato">Formato</label>
+          <select class="form-control" name="formato" formControlName="formato" id="field_formato" data-cy="formato">
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.Formato.null' | translate }}</option>
+            @for (formato of formatoValues; track $index) {
+              <option [value]="formato">{{ 'proyectoArquitecturaApp.Formato.' + formato | translate }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_propietario" jhiTranslate="proyectoArquitecturaApp.activoInformacion.propietario"
+            >Propietario</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="propietario"
+            id="field_propietario"
+            data-cy="propietario"
+            formControlName="propietario"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_usuario" jhiTranslate="proyectoArquitecturaApp.activoInformacion.usuario">Usuario</label>
+          <input type="text" class="form-control" name="usuario" id="field_usuario" data-cy="usuario" formControlName="usuario" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_custodio" jhiTranslate="proyectoArquitecturaApp.activoInformacion.custodio">Custodio</label>
+          <input type="text" class="form-control" name="custodio" id="field_custodio" data-cy="custodio" formControlName="custodio" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_usuarioFinal" jhiTranslate="proyectoArquitecturaApp.activoInformacion.usuarioFinal"
+            >Usuario Final</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="usuarioFinal"
+            id="field_usuarioFinal"
+            data-cy="usuarioFinal"
+            formControlName="usuarioFinal"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fecha" jhiTranslate="proyectoArquitecturaApp.activoInformacion.fecha">Fecha</label>
+          <div class="input-group">
+            <input
+              id="field_fecha"
+              data-cy="fecha"
+              type="text"
+              class="form-control"
+              name="fecha"
+              ngbDatepicker
+              #fechaDp="ngbDatepicker"
+              formControlName="fecha"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_estadoActivo" jhiTranslate="proyectoArquitecturaApp.activoInformacion.estadoActivo"
+            >Estado Activo</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="estadoActivo"
+            id="field_estadoActivo"
+            data-cy="estadoActivo"
+            formControlName="estadoActivo"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaIngreso" jhiTranslate="proyectoArquitecturaApp.activoInformacion.fechaIngreso"
+            >Fecha Ingreso</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaIngreso"
+              data-cy="fechaIngreso"
+              type="text"
+              class="form-control"
+              name="fechaIngreso"
+              ngbDatepicker
+              #fechaIngresoDp="ngbDatepicker"
+              formControlName="fechaIngreso"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaIngresoDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fechaRetiro" jhiTranslate="proyectoArquitecturaApp.activoInformacion.fechaRetiro"
+            >Fecha Retiro</label
+          >
+          <div class="input-group">
+            <input
+              id="field_fechaRetiro"
+              data-cy="fechaRetiro"
+              type="text"
+              class="form-control"
+              name="fechaRetiro"
+              ngbDatepicker
+              #fechaRetiroDp="ngbDatepicker"
+              formControlName="fechaRetiro"
+            />
+            <button type="button" class="btn btn-secondary" (click)="fechaRetiroDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_grupoActivo" jhiTranslate="proyectoArquitecturaApp.activoInformacion.grupoActivo"
+            >Grupo Activo</label
+          >
+          <select
+            class="form-control"
+            id="field_grupoActivo"
+            data-cy="grupoActivo"
+            name="grupoActivo"
+            formControlName="grupoActivo"
+            [compareWith]="compareGrupoActivos"
+          >
+            <option [ngValue]="null"></option>
+            @for (grupoActivosOption of grupoActivosSharedCollection; track $index) {
+              <option [ngValue]="grupoActivosOption">{{ grupoActivosOption.nombre }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

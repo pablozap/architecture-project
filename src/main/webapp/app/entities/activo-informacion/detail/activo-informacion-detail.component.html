@@ -1,0 +1,146 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (activoInformacion(); as activoInformacionRef) {
+      <div>
+        <h2 data-cy="activoInformacionDetailsHeading">
+          <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.detail.title">Activo Informacion</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.proceso">Proceso</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Proceso.' + (activoInformacionRef.proceso ?? 'null')">{{
+              {
+                null: '',
+                MISSION: 'Misional',
+                STRATEGIC: 'Estrategico',
+                SUPPORT: 'Apoyo',
+                EVALUATION: 'Evaluacion',
+                IMPROVEMENT: 'Mejora',
+              }[activoInformacionRef.proceso ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.descripcion">Descripcion</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.descripcion }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.tipoActivo">Tipo Activo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.TipoActivo.' + (activoInformacionRef.tipoActivo ?? 'null')">{{
+              { null: '', STI: 'STI', DAT: 'DAT', SW: 'SW', HW: 'HW', SI: 'SI', COM: 'COM', AUX: 'AUX' }[
+                activoInformacionRef.tipoActivo ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.ley1581">Ley 1581</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.ley1581 }}</span>
+          </dd>
+          <dt>
+            <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.clasificacionInformacion1712"
+              >Clasificacion Informacion 1712</span
+            >
+          </dt>
+          <dd>
+            <span
+              [jhiTranslate]="
+                'proyectoArquitecturaApp.ClasificacionInformacion1712.' + (activoInformacionRef.clasificacionInformacion1712 ?? 'null')
+              "
+              >{{
+                {
+                  null: '',
+                  RESTRICTED: 'Contiene información publica reservada',
+                  CLASSIFIED: 'Contiene información publica clasificada',
+                  PUBLIC: 'Contiene información publica',
+                  NONPUBLIC: 'La información contenida no está clasificada',
+                }[activoInformacionRef.clasificacionInformacion1712 ?? 'null']
+              }}</span
+            >
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.ley1266">Ley 1266</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.ley1266 }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.formato">Formato</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Formato.' + (activoInformacionRef.formato ?? 'null')">{{
+              {
+                null: '',
+                EXCEL: 'Hoja de calculo',
+                TEXT: 'Documento de texto',
+                PDF: 'Documento PDF',
+                PRESENTATION: 'Presentacion',
+                MULTIMEDIA: 'Imagen/Audio',
+                NA: 'No Aplica',
+              }[activoInformacionRef.formato ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.propietario">Propietario</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.propietario }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.usuario">Usuario</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.usuario }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.custodio">Custodio</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.custodio }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.usuarioFinal">Usuario Final</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.usuarioFinal }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.fecha">Fecha</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.fecha | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.estadoActivo">Estado Activo</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.estadoActivo }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.fechaIngreso">Fecha Ingreso</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.fechaIngreso | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.fechaRetiro">Fecha Retiro</span></dt>
+          <dd>
+            <span>{{ activoInformacionRef.fechaRetiro | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.activoInformacion.grupoActivo">Grupo Activo</span></dt>
+          <dd>
+            @if (activoInformacion()!.grupoActivo) {
+              <div>
+                <a [routerLink]="['/grupo-activos', activoInformacion()!.grupoActivo?.id, 'view']">{{
+                  activoInformacionRef.grupoActivo?.nombre
+                }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/activo-informacion', activoInformacionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

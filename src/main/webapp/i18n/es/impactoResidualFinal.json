@@ -1,0 +1,12 @@
+{
+  "proyectoArquitecturaApp": {
+    "ImpactoResidualFinal": {
+      "null": "",
+      "LOWEST": "Leve",
+      "LOW": "Menor",
+      "MEDIUM": "Moderado",
+      "HIGH": "Mayor",
+      "HIGHEST": "Catastrofico"
+    }
+  }
+}

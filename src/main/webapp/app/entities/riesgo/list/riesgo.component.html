@@ -1,0 +1,478 @@
+<div>
+  <h2 id="page-heading" data-cy="RiesgoHeading">
+    <span jhiTranslate="proyectoArquitecturaApp.riesgo.home.title">Riesgos</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="proyectoArquitecturaApp.riesgo.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-riesgo"
+        [routerLink]="['/riesgo/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="proyectoArquitecturaApp.riesgo.home.createLabel">Crear nuevo Riesgo</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (riesgos?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="proyectoArquitecturaApp.riesgo.home.notFound">Ningún Riesgos encontrado</span>
+    </div>
+  }
+
+  @if (riesgos && riesgos.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="proceso">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.proceso">Proceso</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="activos.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.activos">Activos</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="amenaza.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.amenaza">Amenaza</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="vulnerabilidad.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.vulnerabilidad">Vulnerabilidad</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoRiesgo">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.tipoRiesgo">Tipo Riesgo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descripcion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.descripcion">Descripcion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clasificacion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.clasificacion">Clasificacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="frecuencia">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.frecuencia">Frecuencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="afectacionEconomica">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.afectacionEconomica">Afectacion Economica</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="impactoReputacional">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.impactoReputacional">Impacto Reputacional</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="probabilidadInherente">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.probabilidadInherente">Probabilidad Inherente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="impactoInherente">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.impactoInherente">Impacto Inherente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="zonaRiesgo">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.zonaRiesgo">Zona Riesgo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="controles.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.controles">Controles</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="afectacion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.afectacion">Afectacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoControl">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.tipoControl">Tipo Control</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="implementacion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.implementacion">Implementacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="calificacionControl">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.calificacionControl">Calificacion Control</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="documentado">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.documentado">Documentado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="frecuenciaControl">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.frecuenciaControl">Frecuencia Control</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="evidencia">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.evidencia">Evidencia</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="probabilidad">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.probabilidad">Probabilidad</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="impacto">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.impacto">Impacto</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="probabilidadResidualFinal">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.probabilidadResidualFinal">Probabilidad Residual Final</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="impactoResidualFinal">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.impactoResidualFinal">Impacto Residual Final</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="zonaDeRiesgoFinal">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.zonaDeRiesgoFinal">Zona De Riesgo Final</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="riesgoResidual">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.riesgoResidual">Riesgo Residual</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tratamiento">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.tratamiento">Tratamiento</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="planAccion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.planAccion">Plan Accion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="responsable">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.responsable">Responsable</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaImplementacion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.fechaImplementacion">Fecha Implementacion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="seguimientoControlExistente">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.seguimientoControlExistente">Seguimiento Control Existente</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estado">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.estado">Estado</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="observaciones">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.observaciones">Observaciones</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaMonitoreo">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.riesgo.fechaMonitoreo">Fecha Monitoreo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (riesgo of riesgos; track trackId(riesgo)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/riesgo', riesgo.id, 'view']">{{ riesgo.id }}</a>
+              </td>
+              <td>{{ riesgo.proceso }}</td>
+              <td>
+                @for (activos of riesgo.activos; track $index; let last = $last) {
+                  <span>
+                    <a class="form-control-static" [routerLink]="['/grupo-activos', activos.id, 'view']">{{ activos.nombre }}</a
+                    >{{ last ? '' : ', ' }}
+                  </span>
+                }
+              </td>
+              <td>
+                @if (riesgo.amenaza) {
+                  <div>
+                    <a [routerLink]="['/amenazas', riesgo.amenaza.id, 'view']">{{ riesgo.amenaza.nombre }}</a>
+                  </div>
+                }
+              </td>
+              <td>
+                @if (riesgo.vulnerabilidad) {
+                  <div>
+                    <a [routerLink]="['/vulnerabilidades', riesgo.vulnerabilidad.id, 'view']">{{ riesgo.vulnerabilidad.nombre }}</a>
+                  </div>
+                }
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.TipoRiesgo.' + (riesgo.tipoRiesgo ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    INTEGRITY: 'Perdida de integridad',
+                    AVAILABILITY: 'Perdida de disponibilidad',
+                    CONFIDENTIALITY: 'Perdida de confidencialidad',
+                  }[riesgo.tipoRiesgo ?? 'null']
+                }}
+              </td>
+              <td>{{ riesgo.descripcion }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.Clasificacion.' + (riesgo.clasificacion ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    EXECUTION: 'Ejecucion y Administracion',
+                    INTERN: 'Fraude interno',
+                    EXTERN: 'Fraude externo',
+                    FAILS: 'Fallas tecnologicas',
+                    RELATIONS: 'Relaciones laborales',
+                    HUMAN: 'Usuarios productos y practicas',
+                    DAMAGE: 'Daños a activos fijos/eventos',
+                  }[riesgo.clasificacion ?? 'null']
+                }}
+              </td>
+              <td>{{ riesgo.frecuencia }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.AfectacionEconomica.' + (riesgo.afectacionEconomica ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    LOWEST: 'Menor a 10 SMLMV',
+                    LOW: 'Entre 10 y 50 SMLMV',
+                    MEDIUM: 'Entre 50 y 100 SMLMV',
+                    HIGH: 'Entre 100 y 500 SMLMV',
+                    HIGHEST: 'Mayor a 500 SMLMV',
+                  }[riesgo.afectacionEconomica ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.AfectacionReputacional.' + (riesgo.impactoReputacional ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    LOWEST: 'El riesgo afecta la imagen de algun área de la organizacion',
+                    LOW: 'El riesgo afecta la imagen de la entidad internamente de conocimiento general nivel interno de junta directiva y accionistas y/o de proveedores',
+                    MEDIUM: 'El riesgo afecta la imagen de la entidad con algunos usuarios de relevancia frente al logro de los objetivos',
+                    HIGH: 'El riesgo afecta la imagen de la entidad con efecto publicitario sostenido a nivel de sector administrativo nivel departamental o municipal',
+                    HIGHEST: 'El riesgo afecta la imagen de la entidad a nivel nacional con efecto publicitario sostenido a nivel país',
+                  }[riesgo.impactoReputacional ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.ProbabilidadInherente.' + (riesgo.probabilidadInherente ?? 'null')">
+                {{
+                  { null: '', LOWEST: 'Muy Baja', LOW: 'Baja', MEDIUM: 'Moderada', HIGH: 'Alta', HIGHEST: 'Muy Alta' }[
+                    riesgo.probabilidadInherente ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.ImpactoInherente.' + (riesgo.impactoInherente ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    NA: 'No ha calificado',
+                    LOWEST: 'Leve',
+                    LOW: 'Menor',
+                    MEDIUM: 'Moderado',
+                    HIGH: 'Mayor',
+                    HIGHEST: 'Catastrofico',
+                  }[riesgo.impactoInherente ?? 'null']
+                }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.ZonaRiesgo.' + (riesgo.zonaRiesgo ?? 'null')">
+                {{
+                  { null: '', LOWEST: 'Muy Bajo', LOW: 'Bajo', MEDIUM: 'Moderado', HIGH: 'Alto', HIGHEST: 'Muy Alto' }[
+                    riesgo.zonaRiesgo ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>
+                @for (controles of riesgo.controles; track $index; let last = $last) {
+                  <span>
+                    <a class="form-control-static" [routerLink]="['/controles', controles.id, 'view']">{{ controles.nombre }}</a
+                    >{{ last ? '' : ', ' }}
+                  </span>
+                }
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.Afectacion.' + (riesgo.afectacion ?? 'null')">
+                {{ { null: '', PROBABILITY: 'Probabilidad', IMPACT: 'Impacto' }[riesgo.afectacion ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.TipoControl.' + (riesgo.tipoControl ?? 'null')">
+                {{ { null: '', PREVENTIVE: 'Preventivo', DETECTIVE: 'Detectivo', CORRECTIVE: 'Correctivo' }[riesgo.tipoControl ?? 'null'] }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.Implementacion.' + (riesgo.implementacion ?? 'null')">
+                {{ { null: '', AUTOMATIC: 'Automatica', MANUAL: 'Manual' }[riesgo.implementacion ?? 'null'] }}
+              </td>
+              <td>{{ riesgo.calificacionControl }}</td>
+              <td>{{ riesgo.documentado }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.FrecuenciaControl.' + (riesgo.frecuenciaControl ?? 'null')">
+                {{ { null: '', CONTINUOUS: 'Continua', RANDOM: 'Aleatoria' }[riesgo.frecuenciaControl ?? 'null'] }}
+              </td>
+              <td>{{ riesgo.evidencia }}</td>
+              <td>{{ riesgo.probabilidad }}</td>
+              <td>{{ riesgo.impacto }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.ProbabilidadResidualFinal.' + (riesgo.probabilidadResidualFinal ?? 'null')">
+                {{
+                  { null: '', LOWEST: 'Muy Baja', LOW: 'Baja', MEDIUM: 'Moderada', HIGH: 'Alta', HIGHEST: 'Muy Alta' }[
+                    riesgo.probabilidadResidualFinal ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.ImpactoResidualFinal.' + (riesgo.impactoResidualFinal ?? 'null')">
+                {{
+                  { null: '', LOWEST: 'Leve', LOW: 'Menor', MEDIUM: 'Moderado', HIGH: 'Mayor', HIGHEST: 'Catastrofico' }[
+                    riesgo.impactoResidualFinal ?? 'null'
+                  ]
+                }}
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.ZonaRiesgoFinalControl.' + (riesgo.zonaDeRiesgoFinal ?? 'null')">
+                {{
+                  { null: '', LOWEST: 'Muy bajo', LOW: 'Leve', MEDIUM: 'Moderado', HIGH: 'Alto', HIGHEST: 'Muy alto' }[
+                    riesgo.zonaDeRiesgoFinal ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ riesgo.riesgoResidual }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.TratamientoRiesgo.' + (riesgo.tratamiento ?? 'null')">
+                {{
+                  { null: '', REDUCE: 'Reducir', TRANSFER: 'Transferir', ACCEPT: 'Aceptar', AVOID: 'Evitar' }[riesgo.tratamiento ?? 'null']
+                }}
+              </td>
+              <td>{{ riesgo.planAccion }}</td>
+              <td>{{ riesgo.responsable }}</td>
+              <td>{{ riesgo.fechaImplementacion | formatMediumDate }}</td>
+              <td>{{ riesgo.seguimientoControlExistente }}</td>
+              <td>{{ riesgo.estado }}</td>
+              <td>{{ riesgo.observaciones }}</td>
+              <td>{{ riesgo.fechaMonitoreo | formatMediumDate }}</td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/riesgo', riesgo.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a [routerLink]="['/riesgo', riesgo.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(riesgo)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

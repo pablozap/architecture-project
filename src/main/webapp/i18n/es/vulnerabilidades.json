@@ -1,0 +1,26 @@
+{
+  "proyectoArquitecturaApp": {
+    "vulnerabilidades": {
+      "home": {
+        "title": "Vulnerabilidades",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nueva Vulnerabilidad",
+        "createOrEditLabel": "Crear o editar Vulnerabilidad",
+        "notFound": "Ninguna Vulnerabilidad encontrada"
+      },
+      "created": "Una nueva Vulnerabilidad ha sido creada con el identificador {{ param }}",
+      "updated": "Una Vulnerabilidad ha sido actualizada con el identificador {{ param }}",
+      "deleted": "Una Vulnerabilidad ha sido eliminada con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar la Vulnerabilidad {{ id }}?"
+      },
+      "detail": {
+        "title": "Vulnerabilidades"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "riesgo": "Riesgo"
+    }
+  }
+}

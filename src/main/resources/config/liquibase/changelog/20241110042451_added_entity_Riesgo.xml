@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <!--
+        Added the entity Riesgo.
+    -->
+    <changeSet id="20241110042451-1" author="jhipster">
+        <createTable tableName="riesgo">
+            <column name="id" type="bigint">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="proceso" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tipo_riesgo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="descripcion" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="clasificacion" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="frecuencia" type="integer">
+                <constraints nullable="false" />
+            </column>
+            <column name="afectacion_economica" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="impacto_reputacional" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="probabilidad_inherente" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="impacto_inherente" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="zona_riesgo" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="afectacion" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="tipo_control" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="implementacion" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="calificacion_control" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="documentado" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="frecuencia_control" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="evidencia" type="boolean">
+                <constraints nullable="true" />
+            </column>
+            <column name="probabilidad" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="impacto" type="integer">
+                <constraints nullable="true" />
+            </column>
+            <column name="probabilidad_residual_final" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="impacto_residual_final" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="zona_de_riesgo_final" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="riesgo_residual" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="tratamiento" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="plan_accion" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="responsable" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="fecha_implementacion" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="seguimiento_control_existente" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="estado" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="observaciones" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="fecha_monitoreo" type="date">
+                <constraints nullable="true" />
+            </column>
+            <column name="amenaza_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <column name="vulnerabilidad_id" type="bigint">
+                <constraints nullable="false" />
+            </column>
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20241110042451-1-relations" author="jhipster">
+
+        <createTable tableName="rel_riesgo__activos">
+            <column name="activos_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="riesgo_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="riesgo_id, activos_id" tableName="rel_riesgo__activos"/>
+
+        <createTable tableName="rel_riesgo__controles">
+            <column name="controles_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="riesgo_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey columnNames="riesgo_id, controles_id" tableName="rel_riesgo__controles"/>
+    </changeSet>
+
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
+
+    <!--
+        Load sample data generated with Faker.js
+        - This data can be easily edited using a CSV editor (or even MS Excel) and
+          is located in the 'src/main/resources/config/liquibase/fake-data' directory
+        - By default this data is applied when running with the JHipster 'dev' profile.
+          This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
+          Spring Boot configuration key.
+    -->
+    <changeSet id="20241110042451-1-data" author="jhipster" context="faker">
+        <loadData
+                  file="config/liquibase/fake-data/riesgo.csv"
+                  separator=";"
+                  tableName="riesgo"
+                  usePreparedStatements="true">
+            <column name="id" type="numeric"/>
+            <column name="proceso" type="string"/>
+            <column name="tipo_riesgo" type="string"/>
+            <column name="descripcion" type="string"/>
+            <column name="clasificacion" type="string"/>
+            <column name="frecuencia" type="numeric"/>
+            <column name="afectacion_economica" type="string"/>
+            <column name="impacto_reputacional" type="string"/>
+            <column name="probabilidad_inherente" type="string"/>
+            <column name="impacto_inherente" type="string"/>
+            <column name="zona_riesgo" type="string"/>
+            <column name="afectacion" type="string"/>
+            <column name="tipo_control" type="string"/>
+            <column name="implementacion" type="string"/>
+            <column name="calificacion_control" type="numeric"/>
+            <column name="documentado" type="boolean"/>
+            <column name="frecuencia_control" type="string"/>
+            <column name="evidencia" type="boolean"/>
+            <column name="probabilidad" type="numeric"/>
+            <column name="impacto" type="numeric"/>
+            <column name="probabilidad_residual_final" type="string"/>
+            <column name="impacto_residual_final" type="string"/>
+            <column name="zona_de_riesgo_final" type="string"/>
+            <column name="riesgo_residual" type="string"/>
+            <column name="tratamiento" type="string"/>
+            <column name="plan_accion" type="string"/>
+            <column name="responsable" type="string"/>
+            <column name="fecha_implementacion" type="date"/>
+            <column name="seguimiento_control_existente" type="string"/>
+            <column name="estado" type="string"/>
+            <column name="observaciones" type="string"/>
+            <column name="fecha_monitoreo" type="date"/>
+            <column name="amenaza_id" type="numeric"/>
+            <column name="vulnerabilidad_id" type="numeric"/>
+            <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
+        </loadData>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (grupoActivos(); as grupoActivosRef) {
+      <div>
+        <h2 data-cy="grupoActivosDetailsHeading">
+          <span jhiTranslate="proyectoArquitecturaApp.grupoActivos.detail.title">Grupo Activos</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ grupoActivosRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.grupoActivos.nombre">Nombre</span></dt>
+          <dd>
+            <span>{{ grupoActivosRef.nombre }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.grupoActivos.disponibilidad">Disponibilidad</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Disponibilidad.' + (grupoActivosRef.disponibilidad ?? 'null')">{{
+              { null: '', HIGH: 'Alta', MEDIUM: 'Moderada', LOW: 'Baja' }[grupoActivosRef.disponibilidad ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.grupoActivos.integridad">Integridad</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Integridad.' + (grupoActivosRef.integridad ?? 'null')">{{
+              { null: '', HIGH: 'Alta', MEDIUM: 'Moderada', LOW: 'Baja' }[grupoActivosRef.integridad ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.grupoActivos.confidencialidad">Confidencialidad</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Confidencialidad.' + (grupoActivosRef.confidencialidad ?? 'null')">{{
+              { null: '', HIGH: 'Alta', MEDIUM: 'Moderada', LOW: 'Baja' }[grupoActivosRef.confidencialidad ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.grupoActivos.criticidad">Criticidad</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Criticidad.' + (grupoActivosRef.criticidad ?? 'null')">{{
+              { null: '', HIGH: 'Alta', MEDIUM: 'Moderada', LOW: 'Baja' }[grupoActivosRef.criticidad ?? 'null']
+            }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/grupo-activos', grupoActivosRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

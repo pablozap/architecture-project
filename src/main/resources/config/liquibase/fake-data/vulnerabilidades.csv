@@ -1,0 +1,11 @@
+id;nombre;descripcion
+1;Errores de configuración; Configuraciones incorrectas que pueden dejar sistemas expuestos a ataques.
+2;Errores en la gestión de recursos; Mala administración de recursos que puede llevar a fallos de seguridad.
+3;Errores en los sistemas de validación; Fallos en la validación de datos que pueden ser explotados por atacantes.
+4;Acceso a directorios no autorizados; Vulnerabilidades que permiten a los atacantes acceder a directorios y archivos sensibles.
+5;Errores en la gestión y asignación de permisos; Permisos mal configurados que pueden dar acceso no autorizado a usuarios
+6;Cross-Site Scripting (XSS); Permite a los atacantes inyectar scripts maliciosos en páginas web vistas por otros usuarios.
+7;Desbordamiento de búfer; Ocurre cuando un programa escribe más datos en un búfer de los que puede manejar, lo que puede llevar a la ejecución de código malicioso.
+8;Vulnerabilidades en el software de terceros; Uso de bibliotecas o componentes de software que contienen fallos de seguridad.
+9;Falta de cifrado; Transmisión de datos sensibles sin cifrar, lo que permite a los atacantes interceptar y leer la información.
+10;Autenticación débil; Uso de contraseñas fáciles de adivinar o mecanismos de autenticación que no son lo suficientemente robustos.

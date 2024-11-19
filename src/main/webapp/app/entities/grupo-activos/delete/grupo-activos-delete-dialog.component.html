@@ -1,0 +1,30 @@
+@if (grupoActivos) {
+  <form name="deleteForm" (ngSubmit)="confirmDelete(grupoActivos.id!)">
+    <div class="modal-header">
+      <h4 class="modal-title" data-cy="grupoActivosDeleteDialogHeading" jhiTranslate="entity.delete.title">
+        Confirmar operación de borrado
+      </h4>
+    </div>
+
+    <div class="modal-body">
+      <jhi-alert-error></jhi-alert-error>
+      <p
+        id="jhi-delete-grupoActivos-heading"
+        jhiTranslate="proyectoArquitecturaApp.grupoActivos.delete.question"
+        [translateValues]="{ id: grupoActivos.id }"
+      >
+        ¿Seguro que quiere eliminar Grupo Activos {{ grupoActivos.id }}?
+      </p>
+    </div>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+        <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+      </button>
+
+      <button id="jhi-confirm-delete-grupoActivos" data-cy="entityConfirmDeleteButton" type="submit" class="btn btn-danger">
+        <fa-icon icon="times"></fa-icon>&nbsp;<span jhiTranslate="entity.action.delete">Eliminar</span>
+      </button>
+    </div>
+  </form>
+}

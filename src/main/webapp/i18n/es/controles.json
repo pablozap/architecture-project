@@ -1,0 +1,26 @@
+{
+  "proyectoArquitecturaApp": {
+    "controles": {
+      "home": {
+        "title": "Controles",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Control",
+        "createOrEditLabel": "Crear o editar Control",
+        "notFound": "Ningún Control encontrado"
+      },
+      "created": "Un nuevo Control ha sido creado con el identificador {{ param }}",
+      "updated": "Un Control ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Control ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quieres eliminar el Control {{ id }}?"
+      },
+      "detail": {
+        "title": "Controles"
+      },
+      "id": "ID",
+      "nombre": "Nombre",
+      "descripcion": "Descripcion",
+      "riesgo": "Riesgo"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "proyectoArquitecturaApp": {
+    "FrecuenciaControl": {
+      "null": "",
+      "CONTINUOUS": "Continua",
+      "RANDOM": "Aleatoria"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "proyectoArquitecturaApp": {
+    "Criticidad": {
+      "null": "",
+      "HIGH": "Alta",
+      "MEDIUM": "Moderada",
+      "LOW": "Baja"
+    }
+  }
+}

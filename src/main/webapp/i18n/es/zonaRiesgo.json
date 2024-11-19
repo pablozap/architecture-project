@@ -1,0 +1,12 @@
+{
+  "proyectoArquitecturaApp": {
+    "ZonaRiesgo": {
+      "null": "",
+      "LOWEST": "Muy Bajo",
+      "LOW": "Bajo",
+      "MEDIUM": "Moderado",
+      "HIGH": "Alto",
+      "HIGHEST": "Muy Alto"
+    }
+  }
+}

@@ -1,0 +1,264 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (riesgo(); as riesgoRef) {
+      <div>
+        <h2 data-cy="riesgoDetailsHeading"><span jhiTranslate="proyectoArquitecturaApp.riesgo.detail.title">Riesgo</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ riesgoRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.proceso">Proceso</span></dt>
+          <dd>
+            <span>{{ riesgoRef.proceso }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.tipoRiesgo">Tipo Riesgo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.TipoRiesgo.' + (riesgoRef.tipoRiesgo ?? 'null')">{{
+              {
+                null: '',
+                INTEGRITY: 'Perdida de integridad',
+                AVAILABILITY: 'Perdida de disponibilidad',
+                CONFIDENTIALITY: 'Perdida de confidencialidad',
+              }[riesgoRef.tipoRiesgo ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.descripcion">Descripcion</span></dt>
+          <dd>
+            <span>{{ riesgoRef.descripcion }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.clasificacion">Clasificacion</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Clasificacion.' + (riesgoRef.clasificacion ?? 'null')">{{
+              {
+                null: '',
+                EXECUTION: 'Ejecucion y Administracion',
+                INTERN: 'Fraude interno',
+                EXTERN: 'Fraude externo',
+                FAILS: 'Fallas tecnologicas',
+                RELATIONS: 'Relaciones laborales',
+                HUMAN: 'Usuarios productos y practicas',
+                DAMAGE: 'Daños a activos fijos/eventos',
+              }[riesgoRef.clasificacion ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.frecuencia">Frecuencia</span></dt>
+          <dd>
+            <span>{{ riesgoRef.frecuencia }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.afectacionEconomica">Afectacion Economica</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.AfectacionEconomica.' + (riesgoRef.afectacionEconomica ?? 'null')">{{
+              {
+                null: '',
+                LOWEST: 'Menor a 10 SMLMV',
+                LOW: 'Entre 10 y 50 SMLMV',
+                MEDIUM: 'Entre 50 y 100 SMLMV',
+                HIGH: 'Entre 100 y 500 SMLMV',
+                HIGHEST: 'Mayor a 500 SMLMV',
+              }[riesgoRef.afectacionEconomica ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.impactoReputacional">Impacto Reputacional</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.AfectacionReputacional.' + (riesgoRef.impactoReputacional ?? 'null')">{{
+              {
+                null: '',
+                LOWEST: 'El riesgo afecta la imagen de algun área de la organizacion',
+                LOW: 'El riesgo afecta la imagen de la entidad internamente de conocimiento general nivel interno de junta directiva y accionistas y/o de proveedores',
+                MEDIUM: 'El riesgo afecta la imagen de la entidad con algunos usuarios de relevancia frente al logro de los objetivos',
+                HIGH: 'El riesgo afecta la imagen de la entidad con efecto publicitario sostenido a nivel de sector administrativo nivel departamental o municipal',
+                HIGHEST: 'El riesgo afecta la imagen de la entidad a nivel nacional con efecto publicitario sostenido a nivel país',
+              }[riesgoRef.impactoReputacional ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.probabilidadInherente">Probabilidad Inherente</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.ProbabilidadInherente.' + (riesgoRef.probabilidadInherente ?? 'null')">{{
+              { null: '', LOWEST: 'Muy Baja', LOW: 'Baja', MEDIUM: 'Moderada', HIGH: 'Alta', HIGHEST: 'Muy Alta' }[
+                riesgoRef.probabilidadInherente ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.impactoInherente">Impacto Inherente</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.ImpactoInherente.' + (riesgoRef.impactoInherente ?? 'null')">{{
+              {
+                null: '',
+                NA: 'No ha calificado',
+                LOWEST: 'Leve',
+                LOW: 'Menor',
+                MEDIUM: 'Moderado',
+                HIGH: 'Mayor',
+                HIGHEST: 'Catastrofico',
+              }[riesgoRef.impactoInherente ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.zonaRiesgo">Zona Riesgo</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.ZonaRiesgo.' + (riesgoRef.zonaRiesgo ?? 'null')">{{
+              { null: '', LOWEST: 'Muy Bajo', LOW: 'Bajo', MEDIUM: 'Moderado', HIGH: 'Alto', HIGHEST: 'Muy Alto' }[
+                riesgoRef.zonaRiesgo ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.afectacion">Afectacion</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Afectacion.' + (riesgoRef.afectacion ?? 'null')">{{
+              { null: '', PROBABILITY: 'Probabilidad', IMPACT: 'Impacto' }[riesgoRef.afectacion ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.tipoControl">Tipo Control</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.TipoControl.' + (riesgoRef.tipoControl ?? 'null')">{{
+              { null: '', PREVENTIVE: 'Preventivo', DETECTIVE: 'Detectivo', CORRECTIVE: 'Correctivo' }[riesgoRef.tipoControl ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.implementacion">Implementacion</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.Implementacion.' + (riesgoRef.implementacion ?? 'null')">{{
+              { null: '', AUTOMATIC: 'Automatica', MANUAL: 'Manual' }[riesgoRef.implementacion ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.calificacionControl">Calificacion Control</span></dt>
+          <dd>
+            <span>{{ riesgoRef.calificacionControl }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.documentado">Documentado</span></dt>
+          <dd>
+            <span>{{ riesgoRef.documentado }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.frecuenciaControl">Frecuencia Control</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.FrecuenciaControl.' + (riesgoRef.frecuenciaControl ?? 'null')">{{
+              { null: '', CONTINUOUS: 'Continua', RANDOM: 'Aleatoria' }[riesgoRef.frecuenciaControl ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.evidencia">Evidencia</span></dt>
+          <dd>
+            <span>{{ riesgoRef.evidencia }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.probabilidad">Probabilidad</span></dt>
+          <dd>
+            <span>{{ riesgoRef.probabilidad }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.impacto">Impacto</span></dt>
+          <dd>
+            <span>{{ riesgoRef.impacto }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.probabilidadResidualFinal">Probabilidad Residual Final</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.ProbabilidadResidualFinal.' + (riesgoRef.probabilidadResidualFinal ?? 'null')">{{
+              { null: '', LOWEST: 'Muy Baja', LOW: 'Baja', MEDIUM: 'Moderada', HIGH: 'Alta', HIGHEST: 'Muy Alta' }[
+                riesgoRef.probabilidadResidualFinal ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.impactoResidualFinal">Impacto Residual Final</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.ImpactoResidualFinal.' + (riesgoRef.impactoResidualFinal ?? 'null')">{{
+              { null: '', LOWEST: 'Leve', LOW: 'Menor', MEDIUM: 'Moderado', HIGH: 'Mayor', HIGHEST: 'Catastrofico' }[
+                riesgoRef.impactoResidualFinal ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.zonaDeRiesgoFinal">Zona De Riesgo Final</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.ZonaRiesgoFinalControl.' + (riesgoRef.zonaDeRiesgoFinal ?? 'null')">{{
+              { null: '', LOWEST: 'Muy bajo', LOW: 'Leve', MEDIUM: 'Moderado', HIGH: 'Alto', HIGHEST: 'Muy alto' }[
+                riesgoRef.zonaDeRiesgoFinal ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.riesgoResidual">Riesgo Residual</span></dt>
+          <dd>
+            <span>{{ riesgoRef.riesgoResidual }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.tratamiento">Tratamiento</span></dt>
+          <dd>
+            <span [jhiTranslate]="'proyectoArquitecturaApp.TratamientoRiesgo.' + (riesgoRef.tratamiento ?? 'null')">{{
+              { null: '', REDUCE: 'Reducir', TRANSFER: 'Transferir', ACCEPT: 'Aceptar', AVOID: 'Evitar' }[riesgoRef.tratamiento ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.planAccion">Plan Accion</span></dt>
+          <dd>
+            <span>{{ riesgoRef.planAccion }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.responsable">Responsable</span></dt>
+          <dd>
+            <span>{{ riesgoRef.responsable }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.fechaImplementacion">Fecha Implementacion</span></dt>
+          <dd>
+            <span>{{ riesgoRef.fechaImplementacion | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.seguimientoControlExistente">Seguimiento Control Existente</span></dt>
+          <dd>
+            <span>{{ riesgoRef.seguimientoControlExistente }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.estado">Estado</span></dt>
+          <dd>
+            <span>{{ riesgoRef.estado }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.observaciones">Observaciones</span></dt>
+          <dd>
+            <span>{{ riesgoRef.observaciones }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.fechaMonitoreo">Fecha Monitoreo</span></dt>
+          <dd>
+            <span>{{ riesgoRef.fechaMonitoreo | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.activos">Activos</span></dt>
+          <dd>
+            @for (activos of riesgoRef.activos; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/grupo-activos', activos.id, 'view']">{{ activos?.nombre }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.controles">Controles</span></dt>
+          <dd>
+            @for (controles of riesgoRef.controles; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/controles', controles.id, 'view']">{{ controles?.nombre }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.amenaza">Amenaza</span></dt>
+          <dd>
+            @if (riesgo()!.amenaza) {
+              <div>
+                <a [routerLink]="['/amenazas', riesgo()!.amenaza?.id, 'view']">{{ riesgoRef.amenaza?.nombre }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="proyectoArquitecturaApp.riesgo.vulnerabilidad">Vulnerabilidad</span></dt>
+          <dd>
+            @if (riesgo()!.vulnerabilidad) {
+              <div>
+                <a [routerLink]="['/vulnerabilidades', riesgo()!.vulnerabilidad?.id, 'view']">{{ riesgoRef.vulnerabilidad?.nombre }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Volver</span>
+        </button>
+
+        <button type="button" [routerLink]="['/riesgo', riesgoRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editar</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

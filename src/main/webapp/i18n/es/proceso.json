@@ -1,0 +1,12 @@
+{
+  "proyectoArquitecturaApp": {
+    "Proceso": {
+      "null": "",
+      "MISSION": "Misional",
+      "STRATEGIC": "Estrategico",
+      "SUPPORT": "Apoyo",
+      "EVALUATION": "Evaluacion",
+      "IMPROVEMENT": "Mejora"
+    }
+  }
+}

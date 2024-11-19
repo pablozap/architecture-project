@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Riesgo.
+    -->
+    <changeSet id="20241110042451-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="riesgo_id"
+                                 baseTableName="rel_riesgo__activos"
+                                 constraintName="fk_rel_riesgo__activos__riesgo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="riesgo"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="activos_id"
+                                 baseTableName="rel_riesgo__activos"
+                                 constraintName="fk_rel_riesgo__activos__activos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="grupo_activos"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="riesgo_id"
+                                 baseTableName="rel_riesgo__controles"
+                                 constraintName="fk_rel_riesgo__controles__riesgo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="riesgo"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="controles_id"
+                                 baseTableName="rel_riesgo__controles"
+                                 constraintName="fk_rel_riesgo__controles__controles_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="controles"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="amenaza_id"
+                                 baseTableName="riesgo"
+                                 constraintName="fk_riesgo__amenaza_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="amenazas"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="vulnerabilidad_id"
+                                 baseTableName="riesgo"
+                                 constraintName="fk_riesgo__vulnerabilidad_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vulnerabilidades"
+                                 />
+    </changeSet>
+</databaseChangeLog>

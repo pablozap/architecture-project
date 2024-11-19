@@ -1,0 +1,58 @@
+{
+  "proyectoArquitecturaApp": {
+    "riesgo": {
+      "home": {
+        "title": "Riesgos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Riesgo",
+        "createOrEditLabel": "Crear o editar Riesgo",
+        "notFound": "Ningún Riesgo encontrado"
+      },
+      "created": "Un nuevo Riesgo ha sido creado con el identificador {{ param }}",
+      "updated": "Un Riesgo ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Riesgo ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quieres eliminar el Riesgo {{ id }}?"
+      },
+      "detail": {
+        "title": "Riesgo"
+      },
+      "id": "ID",
+      "proceso": "Proceso",
+      "tipoRiesgo": "Tipo de Riesgo",
+      "descripcion": "Descripcion",
+      "clasificacion": "Clasificacion",
+      "frecuencia": "Frecuencia",
+      "afectacionEconomica": "Afectacion Economica",
+      "impactoReputacional": "Impacto Reputacional",
+      "probabilidadInherente": "Probabilidad Inherente",
+      "impactoInherente": "Impacto Inherente",
+      "zonaRiesgo": "Zona Riesgo",
+      "afectacion": "Afectacion",
+      "tipoControl": "Tipo de Control",
+      "implementacion": "Implementacion",
+      "calificacionControl": "Calificacion Control",
+      "documentado": "Documentado",
+      "frecuenciaControl": "Frecuencia Control",
+      "evidencia": "Evidencia",
+      "probabilidad": "Probabilidad",
+      "impacto": "Impacto",
+      "probabilidadResidualFinal": "Probabilidad Residual Final",
+      "impactoResidualFinal": "Impacto Residual Final",
+      "zonaDeRiesgoFinal": "Zona De Riesgo Final",
+      "riesgoResidual": "Riesgo Residual",
+      "tratamiento": "Tratamiento",
+      "planAccion": "Plan Accion",
+      "responsable": "Responsable",
+      "fechaImplementacion": "Fecha Implementacion",
+      "seguimientoControlExistente": "Seguimiento Control Existente",
+      "estado": "Estado",
+      "observaciones": "Observaciones",
+      "fechaMonitoreo": "Fecha Monitoreo",
+      "activos": "Activos",
+      "controles": "Controles",
+      "amenaza": "Amenaza",
+      "vulnerabilidad": "Vulnerabilidad"
+    }
+  }
+}

@@ -1,0 +1,247 @@
+enum Proceso{
+  MISSION("Misional"),
+  STRATEGIC("Estrategico"),
+  SUPPORT("Apoyo"),
+  EVALUATION("Evaluacion"),
+  IMPROVEMENT("Mejora")
+}
+enum TipoActivo{
+  STI,
+  DAT,
+  SW,
+  HW,
+  SI,
+  COM,
+  AUX
+}
+enum ClasificacionInformacion1712{
+  RESTRICTED("Contiene información publica reservada"),
+  CLASSIFIED("Contiene información publica clasificada"),
+  PUBLIC("Contiene información publica"),
+  NONPUBLIC("La información contenida no está clasificada")
+}
+enum Formato{
+  EXCEL("Hoja de calculo"),
+  TEXT("Documento de texto"),
+  PDF("Documento PDF"),
+  PRESENTATION("Presentacion"),
+  MULTIMEDIA("Imagen/Audio"),
+  NA("No Aplica")
+}
+enum Disponibilidad{
+  HIGH("Alta"),
+  MEDIUM("Moderada"),
+  LOW("Baja")
+}
+enum Integridad{
+  HIGH("Alta"),
+  MEDIUM("Moderada"),
+  LOW("Baja")
+}
+enum Confidencialidad{
+  HIGH("Alta"),
+  MEDIUM("Moderada"),
+  LOW("Baja")
+}
+enum Criticidad{
+  HIGH("Alta"),
+  MEDIUM("Moderada"),
+  LOW("Baja")
+}
+
+entity GrupoActivos{
+  nombre String required
+  disponibilidad Disponibilidad required
+  integridad Integridad required
+  confidencialidad Confidencialidad required
+  criticidad Criticidad required
+}
+
+entity ActivoInformacion(activo_informacion){
+  proceso Proceso
+  nombre String required
+  descripcion String required
+  tipoActivo TipoActivo required
+  ley1581 Boolean required
+  clasificacionInformacion1712 ClasificacionInformacion1712 required
+  ley1266 Boolean required
+  formato Formato
+  propietario String
+  usuario String
+  custodio String
+  usuarioFinal String
+  fecha LocalDate
+  estadoActivo String
+  fechaIngreso LocalDate
+  fechaRetiro LocalDate
+}
+
+entity Amenazas{
+  nombre String required
+}
+
+entity Vulnerabilidades{
+  nombre String required
+  descripcion String required
+}
+
+enum TipoRiesgo{
+  INTEGRITY("Perdida de integridad"),
+  AVAILABILITY("Perdida de disponibilidad"),
+  CONFIDENTIALITY("Perdida de confidencialidad")
+}
+
+enum Clasificacion{
+  EXECUTION("Ejecucion y Administracion"),
+  INTERN("Fraude interno"),
+  EXTERN("Fraude externo"),
+  FAILS("Fallas tecnologicas"),
+  RELATIONS("Relaciones laborales"),
+  HUMAN("Usuarios productos y practicas"),
+  DAMAGE("Daños a activos fijos/eventos")
+}
+
+enum ZonaRiesgo{
+  LOWEST("Muy Bajo"),
+  LOW("Bajo"),
+  MEDIUM("Moderado"),
+  HIGH("Alto"),
+  HIGHEST("Muy Alto")
+}
+
+enum Afectacion{
+  PROBABILITY("Probabilidad"),
+  IMPACT("Impacto")
+}
+
+enum TipoControl{
+  PREVENTIVE("Preventivo"),
+  DETECTIVE("Detectivo"),
+  CORRECTIVE("Correctivo")
+}
+
+enum Implementacion{
+  AUTOMATIC("Automatica"),
+  MANUAL("Manual")
+}
+
+enum FrecuenciaControl {
+  CONTINUOUS("Continua"),
+  RANDOM("Aleatoria")
+}
+
+enum ProbabilidadResidualFinal{
+  LOWEST("Muy Baja"),
+  LOW("Baja"),
+  MEDIUM("Moderada"),
+  HIGH("Alta"),
+  HIGHEST("Muy Alta")
+}
+
+enum ImpactoResidualFinal{
+  LOWEST("Leve"),
+  LOW("Menor"),
+  MEDIUM("Moderado"),
+  HIGH("Mayor"),
+  HIGHEST("Catastrofico")
+}
+
+enum ZonaRiesgoFinalControl{
+  LOWEST("Muy bajo")
+  LOW("Leve")
+  MEDIUM("Moderado")
+  HIGH("Alto")
+  HIGHEST("Muy alto")
+}
+entity Controles {
+  nombre String required
+  descripcion String required
+}
+
+enum ProbabilidadInherente{
+  LOWEST("Muy Baja"),
+  LOW("Baja"),
+  MEDIUM("Moderada"),
+  HIGH("Alta"),
+  HIGHEST("Muy Alta")
+}
+
+enum ImpactoInherente{
+  NA("No ha calificado"),
+  LOWEST("Leve"),
+  LOW("Menor"),
+  MEDIUM("Moderado"),
+  HIGH("Mayor"),
+  HIGHEST("Catastrofico")
+}
+
+enum AfectacionEconomica{
+  LOWEST("Menor a 10 SMLMV"),
+  LOW("Entre 10 y 50 SMLMV"),
+  MEDIUM("Entre 50 y 100 SMLMV"),
+  HIGH("Entre 100 y 500 SMLMV"),
+  HIGHEST("Mayor a 500 SMLMV")
+}
+
+enum AfectacionReputacional{
+  LOWEST("El riesgo afecta la imagen de algun área de la organizacion")
+  LOW("El riesgo afecta la imagen de la entidad internamente de conocimiento general nivel interno de junta directiva y accionistas y/o de proveedores")
+  MEDIUM("El riesgo afecta la imagen de la entidad con algunos usuarios de relevancia frente al logro de los objetivos")
+  HIGH("El riesgo afecta la imagen de la entidad con efecto publicitario sostenido a nivel de sector administrativo nivel departamental o municipal")
+  HIGHEST("El riesgo afecta la imagen de la entidad a nivel nacional con efecto publicitario sostenido a nivel país")
+}
+
+enum TratamientoRiesgo{
+  REDUCE("Reducir"),
+  TRANSFER("Transferir"),
+  ACCEPT("Aceptar"),
+  AVOID("Evitar")
+}
+
+entity Riesgo{
+  proceso String
+  tipoRiesgo TipoRiesgo
+  descripcion String
+  clasificacion Clasificacion
+  frecuencia Integer required
+  afectacionEconomica AfectacionEconomica required
+  impactoReputacional AfectacionReputacional
+  probabilidadInherente ProbabilidadInherente
+  impactoInherente ImpactoInherente
+  zonaRiesgo ZonaRiesgo
+  afectacion Afectacion required
+  tipoControl TipoControl required
+  implementacion Implementacion required
+  calificacionControl Integer max(100)
+  documentado Boolean
+  frecuenciaControl FrecuenciaControl required
+  evidencia Boolean
+  probabilidad Integer
+  impacto Integer
+  probabilidadResidualFinal ProbabilidadResidualFinal
+  impactoResidualFinal ImpactoResidualFinal
+  zonaDeRiesgoFinal ZonaRiesgoFinalControl
+  riesgoResidual String
+  tratamiento TratamientoRiesgo required
+  planAccion String
+  responsable String
+  fechaImplementacion LocalDate
+  seguimientoControlExistente String
+  estado String
+  observaciones String
+  fechaMonitoreo LocalDate
+}
+
+relationship OneToMany{
+  GrupoActivos{activos(nombre) required} to ActivoInformacion{grupoActivo(nombre)}
+  Amenazas to Riesgo{amenaza(nombre) required}
+  Vulnerabilidades to Riesgo{vulnerabilidad(nombre) required}
+}
+
+relationship ManyToMany{
+  Riesgo{activos(nombre) required} to GrupoActivos{riesgos(tipoRiesgo)}
+  Riesgo{controles(nombre)} to Controles
+}
+
+dto * with mapstruct
+service * with serviceClass

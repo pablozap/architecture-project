@@ -1,0 +1,11 @@
+{
+  "proyectoArquitecturaApp": {
+    "TratamientoRiesgo": {
+      "null": "",
+      "REDUCE": "Reducir",
+      "TRANSFER": "Transferir",
+      "ACCEPT": "Aceptar",
+      "AVOID": "Evitar"
+    }
+  }
+}

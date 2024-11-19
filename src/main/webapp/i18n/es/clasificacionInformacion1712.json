@@ -1,0 +1,11 @@
+{
+  "proyectoArquitecturaApp": {
+    "ClasificacionInformacion1712": {
+      "null": "",
+      "RESTRICTED": "Contiene información publica reservada",
+      "CLASSIFIED": "Contiene información publica clasificada",
+      "PUBLIC": "Contiene información publica",
+      "NONPUBLIC": "La información contenida no está clasificada"
+    }
+  }
+}

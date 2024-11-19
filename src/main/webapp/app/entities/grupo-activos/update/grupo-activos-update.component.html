@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-grupo-activos-heading"
+        data-cy="GrupoActivosCreateUpdateHeading"
+        jhiTranslate="proyectoArquitecturaApp.grupoActivos.home.createOrEditLabel"
+      >
+        Crear o editar Grupo Activos
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="proyectoArquitecturaApp.grupoActivos.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let nombreRef = editForm.get('nombre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nombre" jhiTranslate="proyectoArquitecturaApp.grupoActivos.nombre">Nombre</label>
+          <input type="text" class="form-control" name="nombre" id="field_nombre" data-cy="nombre" formControlName="nombre" />
+          @if (nombreRef.invalid && (nombreRef.dirty || nombreRef.touched)) {
+            <div>
+              @if (editForm.get('nombre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let disponibilidadRef = editForm.get('disponibilidad')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_disponibilidad" jhiTranslate="proyectoArquitecturaApp.grupoActivos.disponibilidad"
+            >Disponibilidad</label
+          >
+          <select
+            class="form-control"
+            name="disponibilidad"
+            formControlName="disponibilidad"
+            id="field_disponibilidad"
+            data-cy="disponibilidad"
+          >
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.Disponibilidad.null' | translate }}</option>
+            @for (disponibilidad of disponibilidadValues; track $index) {
+              <option [value]="disponibilidad">{{ 'proyectoArquitecturaApp.Disponibilidad.' + disponibilidad | translate }}</option>
+            }
+          </select>
+          @if (disponibilidadRef.invalid && (disponibilidadRef.dirty || disponibilidadRef.touched)) {
+            <div>
+              @if (editForm.get('disponibilidad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let integridadRef = editForm.get('integridad')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_integridad" jhiTranslate="proyectoArquitecturaApp.grupoActivos.integridad">Integridad</label>
+          <select class="form-control" name="integridad" formControlName="integridad" id="field_integridad" data-cy="integridad">
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.Integridad.null' | translate }}</option>
+            @for (integridad of integridadValues; track $index) {
+              <option [value]="integridad">{{ 'proyectoArquitecturaApp.Integridad.' + integridad | translate }}</option>
+            }
+          </select>
+          @if (integridadRef.invalid && (integridadRef.dirty || integridadRef.touched)) {
+            <div>
+              @if (editForm.get('integridad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let confidencialidadRef = editForm.get('confidencialidad')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_confidencialidad" jhiTranslate="proyectoArquitecturaApp.grupoActivos.confidencialidad"
+            >Confidencialidad</label
+          >
+          <select
+            class="form-control"
+            name="confidencialidad"
+            formControlName="confidencialidad"
+            id="field_confidencialidad"
+            data-cy="confidencialidad"
+          >
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.Confidencialidad.null' | translate }}</option>
+            @for (confidencialidad of confidencialidadValues; track $index) {
+              <option [value]="confidencialidad">{{ 'proyectoArquitecturaApp.Confidencialidad.' + confidencialidad | translate }}</option>
+            }
+          </select>
+          @if (confidencialidadRef.invalid && (confidencialidadRef.dirty || confidencialidadRef.touched)) {
+            <div>
+              @if (editForm.get('confidencialidad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let criticidadRef = editForm.get('criticidad')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_criticidad" jhiTranslate="proyectoArquitecturaApp.grupoActivos.criticidad">Criticidad</label>
+          <select class="form-control" name="criticidad" formControlName="criticidad" id="field_criticidad" data-cy="criticidad">
+            <option [ngValue]="null">{{ 'proyectoArquitecturaApp.Criticidad.null' | translate }}</option>
+            @for (criticidad of criticidadValues; track $index) {
+              <option [value]="criticidad">{{ 'proyectoArquitecturaApp.Criticidad.' + criticidad | translate }}</option>
+            }
+          </select>
+          @if (criticidadRef.invalid && (criticidadRef.dirty || criticidadRef.touched)) {
+            <div>
+              @if (editForm.get('criticidad')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Este campo es obligatorio.</small>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancelar</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Guardar</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

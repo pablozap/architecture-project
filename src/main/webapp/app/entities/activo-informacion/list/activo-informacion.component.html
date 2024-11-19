@@ -1,0 +1,274 @@
+<div>
+  <h2 id="page-heading" data-cy="ActivoInformacionHeading">
+    <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.home.title">Activo Informacions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.home.refreshListLabel">Refrescar lista</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-activo-informacion"
+        [routerLink]="['/activo-informacion/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.home.createLabel">Crear nuevo Activo Informacion</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (activoInformacions?.length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.home.notFound">Ningún Activo Informacions encontrado</span>
+    </div>
+  }
+
+  @if (activoInformacions && activoInformacions.length > 0) {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [sortState]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="proceso">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.proceso">Proceso</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nombre">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.nombre">Nombre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="descripcion">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.descripcion">Descripcion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="tipoActivo">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.tipoActivo">Tipo Activo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ley1581">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.ley1581">Ley 1581</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="clasificacionInformacion1712">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.clasificacionInformacion1712"
+                  >Clasificacion Informacion 1712</span
+                >
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="ley1266">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.ley1266">Ley 1266</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="formato">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.formato">Formato</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="propietario">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.propietario">Propietario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuario">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.usuario">Usuario</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="custodio">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.custodio">Custodio</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="usuarioFinal">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.usuarioFinal">Usuario Final</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fecha">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.fecha">Fecha</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="estadoActivo">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.estadoActivo">Estado Activo</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaIngreso">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.fechaIngreso">Fecha Ingreso</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fechaRetiro">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.fechaRetiro">Fecha Retiro</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="grupoActivo.nombre">
+              <div class="d-flex">
+                <span jhiTranslate="proyectoArquitecturaApp.activoInformacion.grupoActivo">Grupo Activo</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (activoInformacion of activoInformacions; track trackId(activoInformacion)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/activo-informacion', activoInformacion.id, 'view']">{{ activoInformacion.id }}</a>
+              </td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.Proceso.' + (activoInformacion.proceso ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    MISSION: 'Misional',
+                    STRATEGIC: 'Estrategico',
+                    SUPPORT: 'Apoyo',
+                    EVALUATION: 'Evaluacion',
+                    IMPROVEMENT: 'Mejora',
+                  }[activoInformacion.proceso ?? 'null']
+                }}
+              </td>
+              <td>{{ activoInformacion.nombre }}</td>
+              <td>{{ activoInformacion.descripcion }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.TipoActivo.' + (activoInformacion.tipoActivo ?? 'null')">
+                {{
+                  { null: '', STI: 'STI', DAT: 'DAT', SW: 'SW', HW: 'HW', SI: 'SI', COM: 'COM', AUX: 'AUX' }[
+                    activoInformacion.tipoActivo ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ activoInformacion.ley1581 }}</td>
+              <td
+                [jhiTranslate]="
+                  'proyectoArquitecturaApp.ClasificacionInformacion1712.' + (activoInformacion.clasificacionInformacion1712 ?? 'null')
+                "
+              >
+                {{
+                  {
+                    null: '',
+                    RESTRICTED: 'Contiene información publica reservada',
+                    CLASSIFIED: 'Contiene información publica clasificada',
+                    PUBLIC: 'Contiene información publica',
+                    NONPUBLIC: 'La información contenida no está clasificada',
+                  }[activoInformacion.clasificacionInformacion1712 ?? 'null']
+                }}
+              </td>
+              <td>{{ activoInformacion.ley1266 }}</td>
+              <td [jhiTranslate]="'proyectoArquitecturaApp.Formato.' + (activoInformacion.formato ?? 'null')">
+                {{
+                  {
+                    null: '',
+                    EXCEL: 'Hoja de calculo',
+                    TEXT: 'Documento de texto',
+                    PDF: 'Documento PDF',
+                    PRESENTATION: 'Presentacion',
+                    MULTIMEDIA: 'Imagen/Audio',
+                    NA: 'No Aplica',
+                  }[activoInformacion.formato ?? 'null']
+                }}
+              </td>
+              <td>{{ activoInformacion.propietario }}</td>
+              <td>{{ activoInformacion.usuario }}</td>
+              <td>{{ activoInformacion.custodio }}</td>
+              <td>{{ activoInformacion.usuarioFinal }}</td>
+              <td>{{ activoInformacion.fecha | formatMediumDate }}</td>
+              <td>{{ activoInformacion.estadoActivo }}</td>
+              <td>{{ activoInformacion.fechaIngreso | formatMediumDate }}</td>
+              <td>{{ activoInformacion.fechaRetiro | formatMediumDate }}</td>
+              <td>
+                @if (activoInformacion.grupoActivo) {
+                  <div>
+                    <a [routerLink]="['/grupo-activos', activoInformacion.grupoActivo.id, 'view']">{{
+                      activoInformacion.grupoActivo.nombre
+                    }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/activo-informacion', activoInformacion.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Vista</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/activo-informacion', activoInformacion.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editar</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(activoInformacion)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Eliminar</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
